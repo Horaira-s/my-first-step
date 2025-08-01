@@ -1,0 +1,641 @@
+No.01---for AI in Python(BFS)
+
+# BFS from given source s
+from collections import deque
+
+def bfsOfGraph(adj, s, visited, res):
+    
+    # Create a queue for BFS
+    q = deque()
+    
+    # Mark source node as visited and enqueue it
+    visited[s] = True
+    q.append(s)
+    
+    # Iterate over the queue
+    while q:
+        
+        # Dequeue a vertex and store it
+        curr = q.popleft()
+        res.append(curr)
+        
+        # Get all adjacent vertices of the dequeued 
+        # vertex curr If an adjacent has not been 
+        # visited, mark it visited and enqueue it
+        for x in adj[curr]:
+            if not visited[x]:
+                visited[x] = True
+                q.append(x)
+    return res
+
+# Perform BFS for the entire graph which maybe
+# disconnected
+def bfsDisconnected(adj):
+    V = len(adj)
+    
+    # create an array to store the traversal
+    res = []
+    
+    # Initially mark all the vertices as not visited
+    visited = [False] * V
+    
+    # perform BFS for each node
+    for i in range(V):
+        if not visited[i]:
+            bfsOfGraph(adj, i, visited, res)
+    return res
+
+if __name__ == "__main__":
+    adj = [[1, 2], [0], [0],
+        [4], [3, 5], [4]]
+    ans = bfsDisconnected(adj)
+    for i in ans:
+        print(i, end=" ")
+
+No.02---for AI in Python(DFS)
+
+
+def dfsRec(adj, visited, s, res):
+    visited[s] = True
+    res.append(s)
+
+    # Recursively visit all adjacent vertices that are not visited yet
+    for i in range(len(adj)):
+        if adj[s][i] == 1 and not visited[i]:
+            dfsRec(adj, visited, i, res)
+
+
+def DFS(adj):
+    visited = [False] * len(adj)
+    res = []
+    dfsRec(adj, visited, 0, res)  # Start DFS from vertex 0
+    return res
+
+
+def add_edge(adj, s, t):
+    adj[s][t] = 1
+    adj[t][s] = 1  # Since it's an undirected graph
+
+
+# Driver code
+V = 5
+adj = [[0] * V for _ in range(V)]  # Adjacency matrix
+
+# Define the edges of the graph
+edges = [(1, 2), (1, 0), (2, 0), (2, 3), (2, 4)]
+
+# Populate the adjacency matrix with edges
+for s, t in edges:
+    add_edge(adj, s, t)
+
+res = DFS(adj)  # Perform DFS
+print(" ".join(map(str, res)))
+
+No.03---for AI in Python(DLS)
+
+def depth_limited_search(node, goal_test, limit):
+    if goal_test(node):
+        return node
+    elif limit == 0:
+        return "cutoff"
+    else:
+        cutoff_occurred = False
+        for child in expand(node):
+            result = depth_limited_search(child, goal_test, limit - 1)
+            if result == "cutoff":
+                cutoff_occurred = True
+            elif result != "failure":
+                return result
+        return "cutoff" if cutoff_occurred else "failure"
+    # Define the grid environment with obstacles (1 indicates obstacle, 0 indicates free cell)
+grid = [
+    [0, 0, 0, 0, 0],
+    [0, 1, 1, 0, 0],
+    [0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1],
+    [0, 0, 0, 0, 0]
+]
+# Define initial and goal positions
+initial_position = (0, 0)
+goal_position = (4, 4)
+# Define problem representation
+class Problem:
+    def __init__(self, grid, initial, goal):
+        self.grid = grid
+        self.initial_state = initial
+        self.goal_state = goal
+
+    def is_goal(self, state):
+        return state == self.goal_state
+
+    def expand(self, state):
+        # Define possible movements: up, down, left, right
+        movements = [(0, -1), (0, 1), (-1, 0), (1, 0)]
+        valid_moves = []
+        for move in movements:
+            new_x = state[0] + move[0]
+            new_y = state[1] + move[1]
+            # Check if the new position is within the grid and not an obstacle
+            if 0 <= new_x < len(self.grid) and 0 <= new_y < len(self.grid[0]) and self.grid[new_x][new_y] == 0:
+                valid_moves.append((new_x, new_y))
+        return valid_moves
+    # DLS algorithm
+def depth_limited_search(problem, depth_limit):
+    return recursive_dls(problem.initial_state, problem, depth_limit)
+
+def recursive_dls(node, problem, depth_limit):
+    if problem.is_goal(node):
+        return [node]
+    elif depth_limit == 0:
+        return "cutoff"
+    else:
+        for child in problem.expand(node):
+            result = recursive_dls(child, problem, depth_limit - 1)
+            if result == "cutoff":
+                continue
+            elif result != "failure":
+                return [node] + result
+        return "failure"
+    # Create problem instance
+problem = Problem(grid, initial_position, goal_position)
+# Find path using DLS with depth limit 10
+depth_limit = 10
+path = depth_limited_search(problem, depth_limit)
+# Output path
+if path == "failure":
+    print("No path found within the depth limit.")
+elif path == "cutoff":
+    print("Search terminated due to depth limit.")
+else:
+    print("Path found:", path)
+    import matplotlib.pyplot as plt
+    # Visualization code
+    def visualize_path(grid, path):
+        fig, ax = plt.subplots()
+        # Create a grid with the same dimensions
+        nrows, ncols = len(grid), len(grid[0])
+        ax.set_xticks([x - 0.5 for x in range(1, ncols)], minor=True)
+        ax.set_yticks([y - 0.5 for y in range(1, nrows)], minor=True)
+        ax.grid(which="minor", color="black", linestyle='-', linewidth=2)
+        ax.imshow(grid, cmap='Greys', interpolation='none')
+        
+        # Highlight the path
+        if path:
+            for (x, y) in path:
+                ax.add_patch(plt.Circle((y, x), radius=0.3, color='blue'))
+        
+        # Highlight initial and goal positions
+        ax.add_patch(plt.Circle((initial_position[1], initial_position[0]), radius=0.3, color='green'))
+        ax.add_patch(plt.Circle((goal_position[1], goal_position[0]), radius=0.3, color='red'))
+        
+        plt.gca().invert_yaxis()
+        plt.title("Original Grid with DLS Path")
+        plt.show()
+        
+
+        No.04---for AI in Python(A*)Search
+
+import math
+import heapq
+
+# Define the Cell class
+class Cell:
+    def __init__(self):
+        self.parent_i = 0  # Parent cell's row index
+        self.parent_j = 0  # Parent cell's column index
+        self.f = float('inf')  # Total cost of the cell (g + h)
+        self.g = float('inf')  # Cost from start to this cell
+        self.h = 0  # Heuristic cost from this cell to destination
+
+# Define the size of the grid
+ROW = 9
+COL = 10
+
+# Check if a cell is valid (within the grid)
+def is_valid(row, col):
+    return (row >= 0) and (row < ROW) and (col >= 0) and (col < COL)
+
+# Check if a cell is unblocked
+def is_unblocked(grid, row, col):
+    return grid[row][col] == 1
+
+# Check if a cell is the destination
+def is_destination(row, col, dest):
+    return row == dest[0] and col == dest[1]
+
+# Calculate the heuristic value of a cell (Euclidean distance to destination)
+def calculate_h_value(row, col, dest):
+    return ((row - dest[0]) ** 2 + (col - dest[1]) ** 2) ** 0.5
+
+# Trace the path from source to destination
+def trace_path(cell_details, dest):
+    print("The Path is ")
+    path = []
+    row = dest[0]
+    col = dest[1]
+
+    # Trace the path from destination to source using parent cells
+    while not (cell_details[row][col].parent_i == row and cell_details[row][col].parent_j == col):
+        path.append((row, col))
+        temp_row = cell_details[row][col].parent_i
+        temp_col = cell_details[row][col].parent_j
+        row = temp_row
+        col = temp_col
+
+    # Add the source cell to the path
+    path.append((row, col))
+    # Reverse the path to get the path from source to destination
+    path.reverse()
+
+    # Print the path
+    for i in path:
+        print("->", i, end=" ")
+    print()
+
+# Implement the A* search algorithm
+
+
+def a_star_search(grid, src, dest):
+    # Check if the source and destination are valid
+    if not is_valid(src[0], src[1]) or not is_valid(dest[0], dest[1]):
+        print("Source or destination is invalid")
+        return
+
+    # Check if the source and destination are unblocked
+    if not is_unblocked(grid, src[0], src[1]) or not is_unblocked(grid, dest[0], dest[1]):
+        print("Source or the destination is blocked")
+        return
+
+    # Check if we are already at the destination
+    if is_destination(src[0], src[1], dest):
+        print("We are already at the destination")
+        return
+
+    # Initialize the closed list (visited cells)
+    closed_list = [[False for _ in range(COL)] for _ in range(ROW)]
+    # Initialize the details of each cell
+    cell_details = [[Cell() for _ in range(COL)] for _ in range(ROW)]
+
+    # Initialize the start cell details
+    i = src[0]
+    j = src[1]
+    cell_details[i][j].f = 0
+    cell_details[i][j].g = 0
+    cell_details[i][j].h = 0
+    cell_details[i][j].parent_i = i
+    cell_details[i][j].parent_j = j
+
+    # Initialize the open list (cells to be visited) with the start cell
+    open_list = []
+    heapq.heappush(open_list, (0.0, i, j))
+
+    # Initialize the flag for whether destination is found
+    found_dest = False
+
+    # Main loop of A* search algorithm
+    while len(open_list) > 0:
+        # Pop the cell with the smallest f value from the open list
+        p = heapq.heappop(open_list)
+
+        # Mark the cell as visited
+        i = p[1]
+        j = p[2]
+        closed_list[i][j] = True
+
+        # For each direction, check the successors
+        directions = [(0, 1), (0, -1), (1, 0), (-1, 0), (1, 1), (1, -1), (-1, 1), (-1, -1)]
+        for dir in directions:
+            new_i = i + dir[0]
+            new_j = j + dir[1]
+
+            # If the successor is valid, unblocked, and not visited
+            if is_valid(new_i, new_j) and is_unblocked(grid, new_i, new_j) and not closed_list[new_i][new_j]:
+                # If the successor is the destination
+                if is_destination(new_i, new_j, dest):
+                    # Set the parent of the destination cell
+                    cell_details[new_i][new_j].parent_i = i
+                    cell_details[new_i][new_j].parent_j = j
+                    print("The destination cell is found")
+                    # Trace and print the path from source to destination
+                    trace_path(cell_details, dest)
+                    found_dest = True
+                    return
+                else:
+                    # Calculate the new f, g, and h values
+                    g_new = cell_details[i][j].g + 1.0
+                    h_new = calculate_h_value(new_i, new_j, dest)
+                    f_new = g_new + h_new
+
+                    # If the cell is not in the open list or the new f value is smaller
+                    if cell_details[new_i][new_j].f == float('inf') or cell_details[new_i][new_j].f > f_new:
+                        # Add the cell to the open list
+                        heapq.heappush(open_list, (f_new, new_i, new_j))
+                        # Update the cell details
+                        cell_details[new_i][new_j].f = f_new
+                        cell_details[new_i][new_j].g = g_new
+                        cell_details[new_i][new_j].h = h_new
+                        cell_details[new_i][new_j].parent_i = i
+                        cell_details[new_i][new_j].parent_j = j
+
+    # If the destination is not found after visiting all cells
+    if not found_dest:
+        print("Failed to find the destination cell")
+
+def main():
+    # Define the grid (1 for unblocked, 0 for blocked)
+    grid = [
+        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
+        [1, 1, 1, 0, 1, 1, 1, 0, 1, 1],
+        [1, 1, 1, 0, 1, 1, 0, 1, 0, 1],
+        [0, 0, 1, 0, 1, 0, 0, 0, 0, 1],
+        [1, 1, 1, 0, 1, 1, 1, 0, 1, 0],
+        [1, 0, 1, 1, 1, 1, 0, 1, 0, 0],
+        [1, 0, 0, 0, 0, 1, 0, 0, 0, 1],
+        [1, 0, 1, 1, 1, 1, 0, 1, 1, 1],
+        [1, 1, 1, 0, 0, 0, 1, 0, 0, 1]
+    ]
+
+    # Define the source and destination
+    src = [8, 0]
+    dest = [0, 0]
+
+    # Run the A* search algorithm
+    a_star_search(grid, src, dest)
+
+if __name__ == "__main__":
+    main()
+
+      No.05---for AI in Python(UCS)
+
+import heapq
+import networkx as nx
+import matplotlib.pyplot as plt
+def uniform_cost_search(graph, start, goal):
+    
+    priority_queue = [(0, start)]
+    # Dictionary to store the cost of the shortest path to each node
+    visited = {start: (0, None)}
+    
+    while priority_queue:
+        # Pop the node with the lowest cost from the priority queue
+        current_cost, current_node = heapq.heappop(priority_queue)
+        
+        # If we reached the goal, return the total cost and the path
+        if current_node == goal:
+            return current_cost, reconstruct_path(visited, start, goal)
+        
+        # Explore the neighbors
+        for neighbor, cost in graph[current_node]:
+            total_cost = current_cost + cost
+            # Check if this path to the neighbor is better than any previously found
+            if neighbor not in visited or total_cost < visited[neighbor][0]:
+                visited[neighbor] = (total_cost, current_node)
+                heapq.heappush(priority_queue, (total_cost, neighbor))
+    
+    return None
+def reconstruct_path(visited, start, goal):
+    # Reconstruct the path from start to goal by following the visited nodes
+    path = []
+    current = goal
+    while current is not None:
+        path.append(current)
+        current = visited[current][1]  # Get the parent node
+    path.reverse()
+    return path
+def visualize_graph(graph, path=None):
+    G = nx.DiGraph()
+
+    # Adding nodes and edges to the graph
+    for node, edges in graph.items():
+        for neighbor, cost in edges:
+            G.add_edge(node, neighbor, weight=cost)
+
+    pos = nx.spring_layout(G)  # Positioning the nodes
+
+    # Drawing the graph
+    plt.figure(figsize=(8, 6))
+    nx.draw(G, pos, with_labels=True, node_color='lightblue', node_size=2000, font_size=15, font_weight='bold', edge_color='gray')
+    labels = nx.get_edge_attributes(G, 'weight')
+    nx.draw_networkx_edge_labels(G, pos, edge_labels=labels, font_size=12)
+
+    if path:
+        # Highlight the path in red
+        path_edges = list(zip(path, path[1:]))
+        nx.draw_networkx_edges(G, pos, edgelist=path_edges, edge_color='red', width=2.5)
+
+    plt.title("Uniform Cost Search Path Visualization")
+    plt.show()
+    # Example graph represented as an adjacency list
+graph = {
+    'A': [('B', 1), ('C', 4)],
+    'B': [('D', 1), ('E', 3)],
+    'C': [('F', 5)],
+    'D': [('G', 2)],
+    'E': [('G', 1)],
+    'F': [('G', 2)],
+    'G': []
+}
+
+# Example usage of the UCS function
+start_node = 'A'
+goal_node = 'G'
+result = uniform_cost_search(graph, start_node, goal_node)
+
+if result:
+    total_cost, path = result
+    print(f"Least cost path from {start_node} to {goal_node}: {' -> '.join(path)} with total cost {total_cost}")
+    visualize_graph(graph, path)
+else:
+    print(f"No path found from {start_node} to {goal_node}")
+
+
+          No.06---for AI in Python(Tic-Tac-Toe)
+
+#Tic-Tac-Toe using Mini-Max Algorithm
+"""-----------------------"""
+
+#This function is used to draw the board's current state every time the user turn arrives.
+def ConstBoard(board):
+    print("Current State Of Board : \n\n");
+    for i in range (0,9):
+        if((i>0) and (i%3)==0):
+            print("\n");
+        if(board[i]==0):
+            print("- ",end=" ");
+        if (board[i]==1):
+            print("O ",end=" ");
+        if(board[i]==-1):
+            print("X ",end=" ");
+    print("\n\n");
+
+#This function takes the user move as input and make the required changes on the board.
+def User1Turn(board):
+    pos=input("Enter X's position from [1...9]: ");
+    pos=int(pos);
+    if(board[pos-1]!=0):
+        print("Wrong Move!!!");
+        exit(0) ;
+    board[pos-1]=-1;
+
+def User2Turn(board):
+    pos=input("Enter O's position from [1...9]: ");
+    pos=int(pos);
+    if(board[pos-1]!=0):
+        print("Wrong Move!!!");
+        exit(0);
+    board[pos-1]=1;
+
+#MinMax function.
+def minimax(board,player):
+    x=analyzeboard(board);
+    if(x!=0):
+        return (x*player);
+    pos=-1;
+    value=-2;
+    for i in range(0,9):
+        if(board[i]==0):
+            board[i]=player;
+            score=-minimax(board,(player*-1));
+            if(score>value):
+                value=score;
+                pos=i;
+            board[i]=0;
+
+    if(pos==-1):
+        return 0;
+    return value;
+
+#This function makes the computer's move using minmax algorithm.
+def CompTurn(board):
+    pos=-1;
+    value=-2;
+    for i in range(0,9):
+        if(board[i]==0):
+            board[i]=1;
+            score=-minimax(board, -1);
+            board[i]=0;
+            if(score>value):
+                value=score;
+                pos=i;
+
+    board[pos]=1;
+
+
+#This function is used to analyze a game.
+def analyzeboard(board):
+    cb=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+    for i in range(0,8):
+        if(board[cb[i][0]] != 0 and
+           board[cb[i][0]] == board[cb[i][1]] and
+           board[cb[i][0]] == board[cb[i][2]]):
+            return board[cb[i][2]];
+    return 0;
+
+#Main Function.
+def main():
+    choice=input("Enter 1 for single player, 2 for multiplayer: ");
+    choice=int(choice);
+    #The broad is considered in the form of a single dimentional array.
+    #One player moves 1 and other move -1.
+    board=[0,0,0,0,0,0,0,0,0];
+    if(choice==1):
+        print("Computer : O Vs. You : X");
+        player= input("Enter to play 1(st) or 2(nd) :");
+        player = int(player);
+        for i in range (0,9):
+            if(analyzeboard(board)!=0):
+                break;
+            if((i+player)%2==0):
+                CompTurn(board);
+            else:
+                ConstBoard(board);
+                User1Turn(board);
+    else:
+        for i in range (0,9):
+            if(analyzeboard(board)!=0):
+                break;
+            if((i)%2==0):
+                ConstBoard(board);
+                User1Turn(board);
+            else:
+                ConstBoard(board);
+                User2Turn(board);
+
+
+    x=analyzeboard(board);
+    if(x==0):
+         ConstBoard(board);
+         print("Draw!!!")
+    if(x==-1):
+         ConstBoard(board);
+         print("X Wins!!! Y Loose !!!")
+    if(x==1):
+         ConstBoard(board);
+         print("X Loose!!! O Wins !!!!")
+
+#---------------#
+main()
+#---------------#
+
+                 No.07---for AI in Python(Alpha Bita Purning)
+
+# Python3 program to demonstrate 
+# working of Alpha-Beta Pruning 
+
+# Initial values of Alpha and Beta 
+MAX, MIN = 1000, -1000 
+
+# Returns optimal value for current player 
+#(Initially called for root and maximizer) 
+def minimax(depth, nodeIndex, maximizingPlayer, 
+            values, alpha, beta): 
+ 
+    # Terminating condition. i.e 
+    # leaf node is reached 
+    if depth == 3: 
+        return values[nodeIndex] 
+
+    if maximizingPlayer: 
+     
+        best = MIN 
+
+        # Recur for left and right children 
+        for i in range(0, 2): 
+            
+            val = minimax(depth + 1, nodeIndex * 2 + i, 
+                          False, values, alpha, beta) 
+            best = max(best, val) 
+            alpha = max(alpha, best) 
+
+            # Alpha Beta Pruning 
+            if beta <= alpha: 
+                break 
+         
+        return best 
+     
+    else:
+        best = MAX 
+
+        # Recur for left and 
+        # right children 
+        for i in range(0, 2): 
+         
+            val = minimax(depth + 1, nodeIndex * 2 + i, 
+                            True, values, alpha, beta) 
+            best = min(best, val) 
+            beta = min(beta, best) 
+
+            # Alpha Beta Pruning 
+            if beta <= alpha: 
+                break 
+         
+        return best 
+     
+# Driver Code 
+if __name__ == "__main__": 
+ 
+    values = [3, 5, 6, 9, 1, 2, 0, -1]  
+    print("The optimal value is :", minimax(0, 0, True, values, MIN, MAX)) 
+    
+# This code is contributed by Rituraj Jain
