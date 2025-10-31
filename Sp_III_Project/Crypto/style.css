@@ -1,0 +1,130 @@
+/* CSS Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    background-color: #ffffff; /* Change to white */
+    color: #121212; /* Darker color for text */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  
+  }
+  
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  header h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    background: linear-gradient(90deg, #34c759, #e9ecf0 50%, #ae2d2d);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+  
+  .crypto-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+  
+  .crypto-table th,
+  .crypto-table td {
+    padding: 0.8rem;
+    border: 1px solid #e2e6e9;
+    text-align: left;
+  }
+  
+  .crypto-table th {
+    background-color: #f5f5f5; /* Light grey background for headers */
+    color: #121212; /* Dark text for contrast */
+  }
+  
+  .crypto-table td {
+    background-color: #ffffff; /* White background for table cells */
+    color: #121212;
+  }
+  
+  .crypto-logo {
+    width: 25px;
+    height: 25px;
+    vertical-align: middle;
+  }
+  
+  .crypto-table tr:hover {
+    background-color: #e0e0e0; /* Light grey on hover */
+    color: #000000;
+    cursor: pointer;
+  }
+  
+  .pagination {
+    display:flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  
+  .pagination button {
+    background-color: #111212; /* Dark blue for buttons */
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .pagination button:hover {
+    background-color: #a1aab3; /* Darker blue on hover */
+  }
+  
+  .pagination .active {
+    background-color: #827d7d; /* Active button color */
+  }
+  .upper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 13px 50px;
+    background-color: #000000eb;
+    color: rgb(255, 255, 255);
+    /* position: fixed; */
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+  }
+  
+  nav .logo {
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  nav ul {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+  }
+  
+  nav ul li {
+    display: inline;
+  }
+  
+  nav ul li a {
+    color: rgb(254, 255, 254);
+    text-decoration: none;
+    font-size: 18px;
+    padding: 10px 15px;
+    transition: background-color 0.3s ease;
+  }
+  
+  nav ul li a:hover {
+    background-color: #5e5555;
+    border-radius: 100px;
+  }

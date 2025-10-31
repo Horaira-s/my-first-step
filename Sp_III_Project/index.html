@@ -1,0 +1,829 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>FXCrypto Converter</title>
+
+  <style>
+    
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;0,700;1,400&display=swap");
+
+:root {
+  --extra-light: #f3f4f6;
+  --primary-color: #f39c12;
+  --secondary-color: #3498db;
+  --dark-bg: rgba(0, 0, 0, 0.7);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1523629619140-ee5b56cb3b23?q=80&w=1914&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--dark-bg);
+}
+
+header {
+  position: relative;
+  padding: 0 32px;
+}
+
+nav {
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+#logIn{
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 9px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#logIn:hover{
+  background-color: var(--primary-color);
+}
+.hero-btns {
+  display: flex; /* Flexbox for side-by-side alignment */
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 50px; /* Space between buttons */
+}
+
+.hero-btn, .hero-btn2 {
+  display: inline-block;
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover, .hero-btn2:hover {
+  background-color: var(--primary-color);
+}
+
+
+
+
+
+.nav__logo a {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--extra-light);
+}
+
+.nav__links {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  width: 100%;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.open {
+  display: flex;
+}
+
+.nav__links .link {
+  font-size: 20px;
+  color: var(--extra-light);
+  text-align: center;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav__links .link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggle__btn {
+  display: block;
+  color: var(--extra-light);
+  font-size: 32px;
+}
+.hero-btn {
+  display: inline-block;
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: var(--primary-color);
+}
+
+
+.hero {
+  max-width: 1200px;
+  height: calc(100vh - 80px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 2px 2px 10px rgb(0, 0, 0);
+ color: #f3f4f6;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 2px 2px 10px rgb(0, 0, 0);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background-color: var(--primary-color);
+}
+
+@media screen and (min-width: 640px) {
+  .nav__links {
+    width: 300px;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nav__links {
+    position: unset;
+    width: unset;
+    flex-direction: row;
+    gap: 8px;
+    display: flex !important;
+    background: transparent;
+  }
+
+  .toggle__btn {
+    display: none;
+  }
+
+  .hero h2 {
+    font-size: 64px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero button {
+    width: 250px;
+    padding: 20px;
+  }
+}
+.vh-100 {
+  border-radius: 16px;
+  width: 100%; /* Set to 100% for responsive width */
+  max-width: 500px; /* Limit to 500px */
+  height: auto; /* Use auto to adapt height */
+  text-align: center;
+  position: relative;
+  left: 0; /* Remove fixed positioning for better responsiveness */
+  margin: 20px auto; /* Center it on the page */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal and Form Styling */
+.modal-content {
+  background-color: #376491a2;
+  margin: 10% auto;
+  padding: 0;
+  width: 80%; /* Adjust width for smaller screens */
+  max-width: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Login Form Card Styling */
+.card {
+  border: none;
+  border-radius: 1rem;
+  color: #fff; /* White text */
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+}
+
+/* Button and Input Styling */
+.btn-outline-light {
+  border-color: #fff;
+  color: #fff;
+  display: inline-block; /* Keep button inline */
+  margin-top: 10px; /* Add some margin */
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Form Inputs */
+.emailPass {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 15px 20px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+}
+
+.emailPass:focus {
+  background-color: transparent;
+  border-color: #1cb5e0;
+  outline: none;
+}
+
+/* Form Labels */
+.form-label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Forgot Password Link */
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Social Media Icons */
+.social-icons a {
+  color: #fff;
+  transition: color 0.3s;
+  margin: 0 10px; /* Add spacing between icons */
+}
+
+.social-icons a:hover {
+  color: #1cb5e0;
+}
+
+.text-para {
+  padding-top: 10px;
+  padding-bottom: 40px;
+  color: #ccc;
+  font-size: 14px; /* Adjust font size for better readability */
+}
+
+/* Adjustments for Medium Screens */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 70%;
+  }
+
+  .fw-bold {
+    font-size: 32px;
+  }
+
+  .btn-outline-light {
+    width: 80%;
+  }
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Increase width for smaller screens */
+  }
+
+  .fw-bold {
+    font-size: 28px;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+  }
+
+  .emailPass {
+    padding: 10px 15px; /* Adjust padding for smaller devices */
+  }
+}
+
+/* Adjustments for Extra Small Screens */
+@media (max-width: 480px) {
+  .fw-bold {
+    font-size: 24px;
+  }
+
+  #log {
+    width: 80px; /* Make button smaller for small screens */
+    font-size: 15px; /* Adjust font size */
+  }
+
+  .form-label {
+    font-size: 12px;
+
+  }
+}
+
+/* Blur effect for background when modal is open */
+.blur-background .hero,
+.blur-background header {
+  filter: blur(8px);
+}
+
+/* General Styling */
+.fw-bold {
+  padding-top: 40px; /* Adjust padding for smaller screens */
+  font-size: 36px;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+.sign-up {
+  color: rgb(190, 190, 190);
+}
+
+.sign-up:hover {
+  color: rgb(255, 255, 255);
+}
+
+#forgot {
+  text-decoration: none;
+  position: relative;
+  top: -10px; /* Adjust for better alignment */
+  font-size: 14px; /* Smaller text for mobile */
+}
+
+#forgot:hover {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+#log {
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  font-size: 17px;
+  background-color: transparent;
+  border: white solid 2px;
+  color: white;
+  box-shadow: 1px -2px 7px rgba(61, 60, 60, 0.61);
+}
+
+#log:hover {
+  transition: transform 2ms;
+  transform: translateY(-3px);
+}
+#pass{
+  position: relative;
+  top: -90px;
+}
+.notification-bar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Notification icon */
+.notification-icon {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.notification-icon i {
+  color: white;
+}
+
+/* Notification count badge */
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.crypto-updates {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* Dropdown notifications list */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.dropdown ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown ul li:last-child {
+  border-bottom: none;
+}
+
+.dropdown ul li:hover {
+  background-color: #f1f1f1;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #00ffcc;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+/* Cryptocurrency and Currency Sections */
+#details {
+  background: linear-gradient(to right, #333333, #444444);
+  padding: 40px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: left;
+}
+
+#details h3, #details h4 {
+  color: #00ffcc;
+}
+
+#details ul {
+  margin-left: 20px;
+}
+
+#details li {
+  margin: 10px 0;
+  color: #ddd;
+}
+
+/* About Section Styling */
+#about {
+  background-color: #222222;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 40px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+#about p {
+  margin-bottom: 15px;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #1c1c1c;
+  color: #f4f4f4;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Keyframes for About Section Animation */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav__links {
+      flex-direction: column;
+      display: none;
+  }
+
+  .nav__links.active {
+      display: flex;
+      background-color: #1c1c1c;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+  }
+
+  .nav__links li {
+      margin: 10px 0;
+  }
+
+  .toggle__btn {
+      display: block;
+  }
+
+  #home h1 {
+      font-size: 2.5rem;
+  }
+}
+
+/* Media Query for Smaller Devices */
+@media screen and (max-width: 480px) {
+  #home h1 {
+      font-size: 2rem;
+  }
+
+  #home p {
+      font-size: 1rem;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+  <section class="container-2 new-con">
+    <div class="notification-bar">
+      <div class="crypto-updates">Crypto Market Updates</div>
+      <div class="notification-icon" onclick="toggleDropdown()">
+          <i class="fas fa-bell"></i>
+          <span class="notification-count" id="notificationCount">3</span>
+      </div>
+      <div class="dropdown" id="notificationDropdown">
+          <ul>
+              <li>Bitcoin price up by 2%</li>
+              <li>Ethereum reaches new high</li>
+              <li>Ripple gains momentum</li>
+          </ul>
+      </div>
+  </div>
+  </section>
+  <!-- Header Section -->
+  <header>
+    <nav>
+      <div class="nav__logo">
+        <a href="#">FX & Crypto Converter</a>
+      </div>
+      <div class="toggle__btn">&#9776;</div>
+      <ul class="nav__links">
+        <li><a href="https://riyad899.github.io/Home-page-Fx/" class="link">Home</a></li>
+        <li><a href="https://riyad899.github.io/crypto-live-tracker/" class="link">Crypto</a></li>
+        <li><a href="https://riyad899.github.io/forgine-convertor/" class="link">Convertor</a></li>
+        <li><a href="https://riyad899.github.io/About-description/" class="link">About</a></li>
+        <li><a href="#" id="logIn" class="link">Log in</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h2>Effortless Conversions</h2>
+    <h1>Your One-Stop Foreign & Crypto Exchange</h1>
+    <div class="hero-btns">
+      <a href="https://tanzim-shahriar.github.io/Crypto/" class="hero-btn">Crypto</a>
+      <a href="https://tanzim-shahriar.github.io/FX/" class="hero-btn2">Currency</a>
+    </div>
+    <div>
+      <p></p>
+    </div>
+  </section>
+
+  <!-- Login Modal -->
+  <div id="loginModal" class="modal">
+    <div class="modal-content">
+      <section class="vh-100 gradient-custom">
+        <div class="container py-5 h-100">
+          <div class="row d-flex justify-content-center align-items-center h-100">
+            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+              <div class="card bg-dark text-white" style="border-radius: 1rem;">
+                <div class="card-body p-5 text-center">
+                  <div class="mb-md-5 mt-md-4 pb-5">
+                    <h2 class="fw-bold mb-2 text-uppercase">Login</h2>
+                    <p class="text-para">Please enter your login and password!</p>
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="email" id="typeEmailX" class="emailPass" />
+                      <label class="form-label" id="pass" for="typeEmailX">Email</label>
+                    </div>
+                    <div data-mdb-input-init class="form-outline form-white mb-4">
+                      <input type="password" id="typePasswordX" class="emailPass" />
+                      <label class="form-label" id="pass" for="typePasswordX">Password</label>
+                    </div>
+                    <p class="small mb-5 pb-lg-2"><a class="text-white-50" id="forgot" href="#!">Forgot password?</a></p>
+                    <button data-mdb-button-init data-mdb-ripple-init class="btnLog" id="log" type="submit">Login</button>
+                    <div class="d-flex justify-content-center text-center mt-4 pt-1">
+                      <a href="#!" class="text-white"><i class="fab fa-facebook-f fa-lg"></i></a>
+                      <a href="#!" class="text-white"><i class="fab fa-twitter fa-lg mx-4 px-2"></i></a>
+                      <a href="#!" class="text-white"><i class="fab fa-google fa-lg"></i></a>
+                    </div>
+                  </div>
+                  <div>
+                    <p class="mb-0">Don't have an account? <a href="#!" class="sign-up">Sign Up</a></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+  <section id="details">
+    <h2>Understanding Cryptocurrencies and Foreign Exchange (FX)</h2>
+
+    <h3>Cryptocurrencies: A Revolution in Digital Finance</h3>
+    <p>
+        Cryptocurrencies are decentralized digital currencies that use blockchain technology to ensure security, transparency, and immutability of transactions. The first and most well-known cryptocurrency, Bitcoin, was introduced in 2009 by an anonymous entity named Satoshi Nakamoto. Since then, thousands of cryptocurrencies have been created, including popular ones like Ethereum, Cardano, and Ripple, each serving different purposes and offering unique innovations in the world of finance.
+    </p>
+    <p>
+        One of the most revolutionary aspects of cryptocurrencies is the elimination of intermediaries. Traditional banking systems and payment networks require banks or financial institutions to verify and authorize transactions. In contrast, cryptocurrency transactions are validated through decentralized networks of computers, known as nodes, using cryptographic techniques. This not only reduces transaction fees but also increases security, making it nearly impossible for malicious actors to alter transaction records.
+    </p>
+    <p>
+        Cryptocurrencies have gained immense popularity for various reasons, including the ability to provide financial services to unbanked populations, faster cross-border payments, and the potential for exponential investment returns. Additionally, many cryptocurrencies are programmable, enabling smart contracts and decentralized applications (dApps) that automate complex financial processes without the need for third parties.
+    </p>
+
+    <h4>Key Features of Cryptocurrencies</h4>
+    <ul>
+        <li><strong>Decentralization:</strong> Unlike traditional currencies, which are controlled by central banks and governments, cryptocurrencies are typically decentralized. Their control and management are spread across a network of computers (nodes) rather than a single central authority.</li>
+        <li><strong>Blockchain Technology:</strong> Most cryptocurrencies are built on blockchain technology, which is a decentralized ledger that records transactions across many computers in such a way that the registered transactions cannot be altered retroactively.</li>
+        <li><strong>Security:</strong> Cryptocurrencies use advanced cryptographic techniques to secure transactions, ensuring the safety of funds. Transactions are immutable and verifiable by anyone using the network.</li>
+        <li><strong>Global Access:</strong> Cryptocurrencies are accessible to anyone with an internet connection, providing financial services to individuals who may not have access to traditional banking systems.</li>
+        <li><strong>Volatility:</strong> While cryptocurrencies have great potential for investment returns, they are also known for their volatility. Prices can fluctuate significantly within a short period, which attracts traders and investors looking to capitalize on market swings.</li>
+    </ul>
+
+    <p>
+        Some of the most popular cryptocurrencies include:
+    </p>
+    <ul>
+        <li><strong>Bitcoin (BTC):</strong> The first and most valuable cryptocurrency, often referred to as "digital gold." It serves as a store of value and a medium of exchange, with limited supply capped at 21 million coins.</li>
+        <li><strong>Ethereum (ETH):</strong> A decentralized platform that enables smart contracts and decentralized applications (dApps) to be built and executed without any downtime, fraud, or control from a third party.</li>
+        <li><strong>Cardano (ADA):</strong> A blockchain platform that focuses on providing a secure and scalable ecosystem for developing decentralized applications and smart contracts, with an emphasis on sustainability and scalability.</li>
+        <li><strong>Ripple (XRP):</strong> A digital payment protocol that enables fast, low-cost cross-border transactions. Unlike most other cryptocurrencies, Ripple works closely with traditional financial institutions.</li>
+    </ul>
+
+    <h3>The Foreign Exchange (FX) Market: A Global Financial System</h3>
+    <p>
+        The Foreign Exchange (FX) market is the largest and most liquid financial market in the world, with a daily trading volume of over $6 trillion. It operates 24 hours a day, five days a week, across major financial hubs such as London, New York, Tokyo, and Sydney. The FX market facilitates the buying and selling of currencies, allowing businesses, governments, and individuals to exchange currencies for trade, investment, or speculative purposes.
+    </p>
+    <p>
+        In the FX market, currencies are traded in pairs, such as EUR/USD, GBP/JPY, or USD/JPY. Each currency pair represents the value of one currency against another. For example, in the EUR/USD pair, the value of 1 Euro is expressed in terms of US dollars. The FX market's vast size and global reach ensure constant activity and fluctuations in exchange rates, driven by factors such as geopolitical events, economic data releases, and interest rate changes.
+    </p>
+
+    <h4>Key Concepts of the FX Market</h4>
+    <ul>
+        <li><strong>Exchange Rate:</strong> The price at which one currency can be exchanged for another. Exchange rates are constantly changing based on supply and demand, economic conditions, and market sentiment.</li>
+        <li><strong>Major Pairs:</strong> The most traded currency pairs, including EUR/USD, USD/JPY, GBP/USD, and USD/CHF. These pairs involve the most liquid and widely used currencies.</li>
+        <li><strong>Cross Currency Pairs:</strong> Pairs that do not involve the US dollar, such as EUR/GBP, EUR/JPY, and GBP/JPY. Crosses allow traders to exchange one currency directly for another without first converting to USD.</li>
+        <li><strong>Leverage:</strong> FX traders can use leverage to control large positions with relatively small amounts of capital. While leverage magnifies potential profits, it also increases the risk of significant losses.</li>
+        <li><strong>Pips:</strong> A pip is the smallest price movement in the FX market, typically representing a one-point movement in the fourth decimal place. For example, if EUR/USD moves from 1.1000 to 1.1001, it has moved by 1 pip.</li>
+    </ul>
+
+    <h4>Factors Affecting FX Rates</h4>
+    <p>
+        Several factors influence the movement of exchange rates in the FX market, including:
+    </p>
+    <ul>
+        <li><strong>Interest Rates:</strong> Central banks control interest rates to manage inflation and economic growth. When a country's interest rates rise, its currency often strengthens as higher yields attract foreign capital.</li>
+        <li><strong>Economic Indicators:</strong> Economic data such as GDP growth, employment figures, inflation rates, and trade balances can affect currency values. Positive economic performance typically boosts a country's currency.</li>
+        <li><strong>Geopolitical Events:</strong> Political instability, elections, and geopolitical conflicts can create uncertainty in the FX market, leading to sharp fluctuations in currency values.</li>
+        <li><strong>Market Sentiment:</strong> Currency values are also influenced by traders' perceptions of risk and future market movements. For example, in times of economic uncertainty, investors may flock to safe-haven currencies like the US dollar or Swiss franc.</li>
+    </ul>
+
+    <p>
+        Both cryptocurrency and foreign exchange markets provide exciting opportunities for investors and traders to engage with global finance. While FX markets offer stability and liquidity, cryptocurrencies offer innovation and the potential for high returns. As the financial landscape continues to evolve, both markets will play critical roles in shaping the future of global trade and investment.
+    </p>
+</section>
+
+  <!-- JavaScript for Modal -->
+  <script>
+    // JavaScript to toggle menu visibility on smaller screens
+    const toggleBtn = document.querySelector('.toggle__btn');
+    const navLinks = document.querySelector('.nav__links');
+    const loginModal = document.getElementById('loginModal');
+    const logInButton = document.getElementById('logIn');
+
+    toggleBtn.addEventListener('click', () => {
+      navLinks.classList.toggle('open');
+    });
+
+    // Show the modal when the "Log in" button is clicked
+    logInButton.addEventListener('click', () => {
+      loginModal.style.display = 'block';
+      document.body.classList.add('blur-background');
+    });
+
+    // Close the modal when clicking outside of it
+    window.onclick = function(event) {
+      if (event.target == loginModal) {
+        loginModal.style.display = 'none';
+        document.body.classList.remove('blur-background');
+      }
+    };
+    function toggleDropdown() {
+            const dropdown = document.getElementById("notificationDropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+  </script>
+</body>
+</html>

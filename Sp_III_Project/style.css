@@ -1,0 +1,717 @@
+
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,600;0,700;1,400&display=swap");
+
+:root {
+  --extra-light: #f3f4f6;
+  --primary-color: #f39c12;
+  --secondary-color: #3498db;
+  --dark-bg: rgba(0, 0, 0, 0.7);
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  height: 100vh;
+  background-image: url("https://images.unsplash.com/photo-1523629619140-ee5b56cb3b23?q=80&w=1914&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-color: var(--dark-bg);
+}
+
+header {
+  position: relative;
+  padding: 0 32px;
+}
+
+nav {
+  height: 80px;
+  width: 100%;
+  max-width: 1200px;
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+#logIn{
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 9px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#logIn:hover{
+  background-color: var(--primary-color);
+}
+.hero-btns {
+  display: flex; /* Flexbox for side-by-side alignment */
+  justify-content: center; /* Center the buttons horizontally */
+  gap: 50px; /* Space between buttons */
+}
+
+.hero-btn, .hero-btn2 {
+  display: inline-block;
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover, .hero-btn2:hover {
+  background-color: var(--primary-color);
+}
+
+
+
+
+
+.nav__logo a {
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--extra-light);
+}
+
+.nav__links {
+  position: absolute;
+  right: 0;
+  top: 80px;
+  width: 100%;
+  list-style: none;
+  display: none;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 16px;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.open {
+  display: flex;
+}
+
+.nav__links .link {
+  font-size: 20px;
+  color: var(--extra-light);
+  text-align: center;
+  width: 100%;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.nav__links .link:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.toggle__btn {
+  display: block;
+  color: var(--extra-light);
+  font-size: 32px;
+}
+.hero-btn {
+  display: inline-block;
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero-btn:hover {
+  background-color: var(--primary-color);
+}
+
+
+.hero {
+  max-width: 1200px;
+  height: calc(100vh - 80px);
+  margin: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+  text-align: center;
+}
+
+.hero h2 {
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.5;
+  text-shadow: 2px 2px 10px rgb(0, 0, 0);
+ color: #f3f4f6;
+  margin-bottom: 20px;
+}
+
+.hero h1 {
+  font-size: 20px;
+  font-weight: 400;
+  text-shadow: 2px 2px 10px rgb(0, 0, 0);
+  color: white;
+  margin-bottom: 20px;
+}
+
+.hero button {
+  width: 200px;
+  padding: 16px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 16px;
+  background-color: var(--secondary-color);
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.hero button:hover {
+  background-color: var(--primary-color);
+}
+
+@media screen and (min-width: 640px) {
+  .nav__links {
+    width: 300px;
+  }
+
+  .hero {
+    align-items: flex-start;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .nav__links {
+    position: unset;
+    width: unset;
+    flex-direction: row;
+    gap: 8px;
+    display: flex !important;
+    background: transparent;
+  }
+
+  .toggle__btn {
+    display: none;
+  }
+
+  .hero h2 {
+    font-size: 64px;
+  }
+
+  .hero h1 {
+    font-size: 32px;
+  }
+
+  .hero button {
+    width: 250px;
+    padding: 20px;
+  }
+}
+.vh-100 {
+  border-radius: 16px;
+  width: 100%; /* Set to 100% for responsive width */
+  max-width: 500px; /* Limit to 500px */
+  height: auto; /* Use auto to adapt height */
+  text-align: center;
+  position: relative;
+  left: 0; /* Remove fixed positioning for better responsiveness */
+  margin: 20px auto; /* Center it on the page */
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Modal and Form Styling */
+.modal-content {
+  background-color: #376491a2;
+  margin: 10% auto;
+  padding: 0;
+  width: 80%; /* Adjust width for smaller screens */
+  max-width: 600px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* Login Form Card Styling */
+.card {
+  border: none;
+  border-radius: 1rem;
+  color: #fff; /* White text */
+  padding: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+}
+
+/* Button and Input Styling */
+.btn-outline-light {
+  border-color: #fff;
+  color: #fff;
+  display: inline-block; /* Keep button inline */
+  margin-top: 10px; /* Add some margin */
+}
+
+.btn-outline-light:hover {
+  background-color: #fff;
+  color: #000;
+}
+
+/* Form Inputs */
+.emailPass {
+  background-color: transparent;
+  border: 1px solid #fff;
+  color: #fff;
+  padding: 15px 20px;
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  box-sizing: border-box; /* Ensure padding doesn't affect layout */
+}
+
+.emailPass:focus {
+  background-color: transparent;
+  border-color: #1cb5e0;
+  outline: none;
+}
+
+/* Form Labels */
+.form-label {
+  color: #ccc;
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Forgot Password Link */
+.text-white-50 {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* Social Media Icons */
+.social-icons a {
+  color: #fff;
+  transition: color 0.3s;
+  margin: 0 10px; /* Add spacing between icons */
+}
+
+.social-icons a:hover {
+  color: #1cb5e0;
+}
+
+.text-para {
+  padding-top: 10px;
+  padding-bottom: 40px;
+  color: #ccc;
+  font-size: 14px; /* Adjust font size for better readability */
+}
+
+/* Adjustments for Medium Screens */
+@media (max-width: 1024px) {
+  .modal-content {
+    width: 70%;
+  }
+
+  .fw-bold {
+    font-size: 32px;
+  }
+
+  .btn-outline-light {
+    width: 80%;
+  }
+}
+
+/* Adjustments for Small Screens */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 90%; /* Increase width for smaller screens */
+  }
+
+  .fw-bold {
+    font-size: 28px;
+  }
+
+  .btn-outline-light {
+    width: 100%;
+  }
+
+  .emailPass {
+    padding: 10px 15px; /* Adjust padding for smaller devices */
+  }
+}
+
+/* Adjustments for Extra Small Screens */
+@media (max-width: 480px) {
+  .fw-bold {
+    font-size: 24px;
+  }
+
+  #log {
+    width: 80px; /* Make button smaller for small screens */
+    font-size: 15px; /* Adjust font size */
+  }
+
+  .form-label {
+    font-size: 12px;
+
+  }
+}
+
+/* Blur effect for background when modal is open */
+.blur-background .hero,
+.blur-background header {
+  filter: blur(8px);
+}
+
+/* General Styling */
+.fw-bold {
+  padding-top: 40px; /* Adjust padding for smaller screens */
+  font-size: 36px;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+.sign-up {
+  color: rgb(190, 190, 190);
+}
+
+.sign-up:hover {
+  color: rgb(255, 255, 255);
+}
+
+#forgot {
+  text-decoration: none;
+  position: relative;
+  top: -10px; /* Adjust for better alignment */
+  font-size: 14px; /* Smaller text for mobile */
+}
+
+#forgot:hover {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+#log {
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  font-size: 17px;
+  background-color: transparent;
+  border: white solid 2px;
+  color: white;
+  box-shadow: 1px -2px 7px rgba(61, 60, 60, 0.61);
+}
+
+#log:hover {
+  transition: transform 2ms;
+  transform: translateY(-3px);
+}
+#pass{
+  position: relative;
+  top: -90px;
+}
+.notification-bar {
+  background-color: #333;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* Notification icon */
+.notification-icon {
+  position: relative;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+.notification-icon i {
+  color: white;
+}
+
+/* Notification count badge */
+.notification-count {
+  position: absolute;
+  top: -5px;
+  right: -10px;
+  background: red;
+  color: white;
+  font-size: 12px;
+  padding: 2px 6px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.crypto-updates {
+  font-size: 16px;
+  margin-left: 10px;
+}
+
+/* Dropdown notifications list */
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background-color: white;
+  color: #333;
+  border: 1px solid #ccc;
+  width: 250px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+}
+
+.dropdown ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 10px;
+}
+
+.dropdown ul li {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown ul li:last-child {
+  border-bottom: none;
+}
+
+.dropdown ul li:hover {
+  background-color: #f1f1f1;
+}
+
+h2 {
+  font-size: 2.5rem;
+  color: #00ffcc;
+  margin-bottom: 20px;
+}
+
+p {
+  font-size: 1.1rem;
+  color: #ddd;
+  margin-bottom: 20px;
+}
+
+/* Cryptocurrency and Currency Sections */
+#details {
+  background: linear-gradient(to right, #333333, #444444);
+  padding: 40px;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: left;
+}
+
+#details h3, #details h4 {
+  color: #00ffcc;
+}
+
+#details ul {
+  margin-left: 20px;
+}
+
+#details li {
+  margin: 10px 0;
+  color: #ddd;
+}
+
+/* About Section Styling */
+#about {
+  background-color: #222222;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.5);
+  margin-top: 40px;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+#about p {
+  margin-bottom: 15px;
+}
+
+/* Footer Styling */
+footer {
+  background-color: #1c1c1c;
+  color: #f4f4f4;
+  text-align: center;
+  padding: 20px;
+}
+
+/* Keyframes for About Section Animation */
+@keyframes fadeIn {
+  0% {
+      opacity: 0;
+      transform: translateY(20px);
+  }
+  100% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .nav__links {
+      flex-direction: column;
+      display: none;
+  }
+
+  .nav__links.active {
+      display: flex;
+      background-color: #1c1c1c;
+      position: absolute;
+      top: 60px;
+      left: 0;
+      width: 100%;
+  }
+
+  .nav__links li {
+      margin: 10px 0;
+  }
+
+  .toggle__btn {
+      display: block;
+  }
+
+  #home h1 {
+      font-size: 2.5rem;
+  }
+}
+
+/* Media Query for Smaller Devices */
+@media screen and (max-width: 480px) {
+  #home h1 {
+      font-size: 2rem;
+  }
+
+  #home p {
+      font-size: 1rem;
+  }
+}
+  #log {
+    width: 80px; /* Make button smaller for small screens */
+    font-size: 15px; /* Adjust font size */
+  }
+
+  .form-label {
+    font-size: 12px;
+
+  }
+}
+
+/* Blur effect for background when modal is open */
+.blur-background .hero,
+.blur-background header {
+  filter: blur(8px);
+}
+
+/* General Styling */
+.fw-bold {
+  padding-top: 40px; /* Adjust padding for smaller screens */
+  font-size: 36px;
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+.sign-up {
+  color: rgb(190, 190, 190);
+}
+
+.sign-up:hover {
+  color: rgb(255, 255, 255);
+}
+
+#forgot {
+  text-decoration: none;
+  position: relative;
+  top: -10px; /* Adjust for better alignment */
+  font-size: 14px; /* Smaller text for mobile */
+}
+
+#forgot:hover {
+  color: rgb(255, 255, 255);
+  text-shadow: 1px -2px 7px rgba(0, 0, 0, 0.61);
+}
+
+#log {
+  border-radius: 10px;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  top: -10px;
+  border: none;
+  text-decoration: none;
+  outline: none;
+  font-size: 17px;
+  background-color: transparent;
+  border: white solid 2px;
+  color: white;
+  box-shadow: 1px -2px 7px rgba(61, 60, 60, 0.61);
+}
+
+#log:hover {
+  transition: transform 2ms;
+  transform: translateY(-3px);
+}
+#pass{
+  position: relative;
+  top: -90px;
+}
+
+#logIn{
+  width: 100px;
+  height: 40px;
+  font-size: 18px;
+  font-weight: 600;
+  border-radius: 9px;
+  background-color: var(--secondary-color);
+  color: white;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+#logIn:hover{
+  background-color: var(--primary-color);
+}
