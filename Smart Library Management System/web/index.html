@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Smart Library</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app">
+    <header>
+      <h1>Smart Library Management</h1>
+      <p>Manage books, members, and borrow/return actions from your browser.</p>
+    </header>
+
+    <section class="panel">
+      <h2>Add Book</h2>
+      <form id="book-form">
+        <input name="bookId" type="number" placeholder="Book ID" required />
+        <input name="title" type="text" placeholder="Title" required />
+        <input name="author" type="text" placeholder="Author" required />
+        <input name="category" type="text" placeholder="Category" required />
+        <button class="btn-purple" type="submit">Add Book</button>
+      </form>
+      <div id="book-message" class="message"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Add Member</h2>
+      <form id="member-form">
+        <input name="memberId" type="number" placeholder="Member ID" required />
+        <input name="name" type="text" placeholder="Name" required />
+        <input name="email" type="text" placeholder="Email" required />
+        <button type="submit">Add Member</button>
+      </form>
+      <div id="member-message" class="message"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Issue / Return</h2>
+      <form id="issue-form">
+        <input name="bookId" type="number" placeholder="Book ID" required />
+        <input name="memberId" type="number" placeholder="Member ID" required />
+        <button type="submit" data-action="issue">Issue Book</button>
+        <button type="submit" data-action="return">Return Book</button>
+      </form>
+      <div id="issue-message" class="message"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Books</h2>
+      <div id="books-list" class="list"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Members</h2>
+      <div id="members-list" class="list"></div>
+    </section>
+  </div>
+
+  <script src="/app.js"></script>
+</body>
+</html>

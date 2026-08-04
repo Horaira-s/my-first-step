@@ -1,0 +1,128 @@
+:root {
+  --bg: #020617;
+  --panel: #111827;
+  --panel-2: #0f172a;
+  --text: #f8fafc;
+  --muted: #94a3b8;
+  --border: #334155;
+  --purple: #8b5cf6;
+  --purple-dark: #7c3aed;
+  --green: #22c55e;
+  --blue: #3b82f6;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: linear-gradient(135deg, var(--bg), #111827);
+  color: var(--text);
+}
+
+.app {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  margin-bottom: 24px;
+}
+
+header h1 {
+  margin-bottom: 6px;
+  color: var(--text);
+}
+
+header p {
+  color: var(--muted);
+  margin: 0;
+}
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 16px;
+  margin-bottom: 16px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.panel h2 {
+  margin-top: 0;
+  color: var(--text);
+}
+
+form {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+}
+
+input, button {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+
+input {
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+button {
+  background: var(--blue);
+  color: white;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+button:hover {
+  filter: brightness(1.08);
+}
+
+.btn-purple {
+  background: var(--purple);
+  border-color: var(--purple);
+}
+
+.btn-purple:hover {
+  background: var(--purple-dark);
+}
+
+.message {
+  margin-top: 10px;
+  color: var(--green);
+}
+
+.list {
+  display: grid;
+  gap: 10px;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+.badge {
+  display: inline-block;
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(34, 197, 94, 0.18);
+  color: var(--green);
+  margin-top: 8px;
+}
+
+.book-title {
+  color: var(--green);
+  font-weight: 700;
+}
+
+.member-name {
+  color: var(--purple);
+  font-weight: 700;
+}
